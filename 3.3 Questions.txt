@@ -1,0 +1,13 @@
+1. Describe the heuristic function used in your A* search.
+For my A* search, all the states have the heuristic value of 1.
+
+2. Is the heuristic you used admissible? Describe why.
+Yes, because the cost of each action is 1 so it will never overestimate if the heuristic values are 1.
+
+3. For each of the 5 initial to goal state pair, did BFS, DFS and/or A* reach a solution? If not, describe why?
+BFS did, 
+
+4. For each of the 5 initial to goal state pair, is the BFS, DFS and/or A* solution optimal? Describe why.
+
+
+5. How would you convert the A* search algorithm into Uniform Cost Search?
