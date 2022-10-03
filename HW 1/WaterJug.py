@@ -1,3 +1,5 @@
+import time
+timeout = time.time() + 0.1
 class Jug:
 
     def __init__(self, jug1, jug2, action, parent):
@@ -162,6 +164,9 @@ def DFS(target):
 
     while len(queue) > 0:
 
+        if time.time() > timeout:
+            raise Exception("TIME OUT: Infinite Loop in DFS")
+
         # Graphical representation of the queue
         print(queue)
 
@@ -283,6 +288,6 @@ if __name__ == '__main__':
     # DFS
     # DFS((0,1)) # INFITE LOOP 
     # DFS((4,0)) # INFITE LOOP 
-     DFS((5,0)) # REACHES GOAL
-    # DFS((3,2)) # REACHES GOAL
+    # DFS((5,0)) # REACHES GOAL
+     DFS((3,2)) # REACHES GOAL
     # DFS((1,2)) # INFITE LOOP 
