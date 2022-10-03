@@ -1,0 +1,7 @@
+Initial State: (4,1)
+Goal State: (0,1)
+
+Serching strategy: Astar
+Path: (4, 1), (0, 1)
+Action: Dump 1
+Cost: 1

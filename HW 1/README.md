@@ -38,6 +38,6 @@ There are two jugs J1, J2 with Capacity 5 gal and 2 gal respectively. </br>
     - Contains the output text files of running the algorithms.
 
 ## **Important Notes**
-* ### You can run the different strategies in the WaterJug.py main function. Just run the function with the target values (For example, BFS(4,0) runs the BFS function with (4,0) as the target state).
+* ### You can run the different strategies in the WaterJug.py main function. Just run the function with the target values (For example, BFS((4,0)) runs the BFS function with (4,0) as the target state).
 * ### Other than the output text file, running the function will also output messages to the console, showing the initial and goal state, the solution path and actions, as well as the contents of the search queue for each step.
 * ### 3 of the DFS goal states will run in an infinite loop. This is because they keep on repeating the same state and it has no memory of it.
