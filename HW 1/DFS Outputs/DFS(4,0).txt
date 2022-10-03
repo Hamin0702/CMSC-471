@@ -1,5 +1,5 @@
 Initial State: (4,1)
-Goal State: (1,2)
+Goal State: (4,0)
 
 Serching strategy: DFS
 Time out due to infinite loop in DFS algorithm 

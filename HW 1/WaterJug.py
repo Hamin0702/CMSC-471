@@ -165,6 +165,7 @@ def DFS(target):
     while len(queue) > 0:
 
         if time.time() > timeout:
+            timeoutputText("DFS", start.jugs, target)
             raise Exception("TIME OUT: Infinite Loop in DFS")
 
         # Graphical representation of the queue
@@ -275,6 +276,21 @@ def outputText(algorithm, initial, goal, solutionPath, solutionMoves):
     output.write("\nCost: " + cost)
     output.close()
 
+# function to output the text file in case of an infinite loop in DFS
+def timeoutputText(algorithm, initial, goal):
+    
+    # Opening text file and writing the initial message
+    output = open("output.txt","w")
+    output.write("Initial State: (%d,%d)\n" % (initial[0], initial[1]))
+    output.write("Goal State: (%d,%d)\n\n" % (goal[0], goal[1]))
+    output.write("Serching strategy: " + algorithm + "\n")
+
+    # Time out message
+    output.write("Time out due to infinite loop in DFS algorithm \n")
+    output.write("Never finds the solution \n")
+
+    output.close()
+
 # Driver
 if __name__ == '__main__':
     
@@ -289,5 +305,5 @@ if __name__ == '__main__':
     # DFS((0,1)) # INFITE LOOP 
     # DFS((4,0)) # INFITE LOOP 
     # DFS((5,0)) # REACHES GOAL
-     DFS((3,2)) # REACHES GOAL
-    # DFS((1,2)) # INFITE LOOP 
+    # DFS((3,2)) # REACHES GOAL
+     DFS((1,2)) # INFITE LOOP 

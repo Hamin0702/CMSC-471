@@ -1,0 +1,7 @@
+Initial State: (4,1)
+Goal State: (3,2)
+
+Serching strategy: DFS
+Path: (4, 1), (3, 2)
+Action: Pour 1
+Cost: 1
