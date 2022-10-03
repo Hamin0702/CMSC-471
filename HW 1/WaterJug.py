@@ -461,7 +461,7 @@ def timeoutputText(algorithm, initial, goal):
 if __name__ == '__main__':
     
     # BFS
-    # BFS((0,1))
+    BFS((0,1))
     # BFS((4,0))
     # BFS((5,0))
     # BFS((3,2))
@@ -479,4 +479,4 @@ if __name__ == '__main__':
     # Astar((4,0))
     # Astar((5,0))
     # Astar((3,2))
-    Astar((1,2))
+    # Astar((1,2))
