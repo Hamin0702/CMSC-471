@@ -19,16 +19,16 @@ class Jug:
     def __repr__(self):
         return f"{self.jugs}"
 
+# Initial states of the jugs
+jugX = 4
+jugY = 1
+j1cap = 5
+j2cap = 2
+start = Jug(jugX,jugY,None,None)
+start.startTrue(True)
+
 # Function for BFS
 def BFS(target):
-
-    # Initial states of the jugs
-    jugX = 4
-    jugY = 2
-    j1cap = 5
-    j2cap = 2
-    start = Jug(jugX,jugY,None,None)
-    start.startTrue(True)
 
     # Target state
     T = target
@@ -139,7 +139,107 @@ def BFS(target):
     outputText("BFS", start.jugs, target, path, moves)
 
 def DFS(target):
-    None
+
+    # Target state
+    T = target
+
+    # Queue of the Jugs states
+    queue = []
+    queue.append(start)
+    
+    # Solution lists
+    path = []
+    moves = []
+
+    # Final solution state
+    goal = None
+
+    print("Initial State: (%d,%d)" % (jugX, jugY))
+    print("Goal State: (%d,%d)" % (target[0], target[1]))
+    print("Contents of the search")
+
+    while len(queue) > 0:
+
+        # Graphical representation of the queue
+        print(queue)
+
+        # Current state
+        current = queue.pop(0)
+
+        # If it reaches the goal state
+        if current.jugs == T:
+            print("Solution Found!")
+            goal = current
+            break
+
+        # Error checking
+        if current.jug1 < 0 or current.jug2 < 0 or current.jug1 > j1cap or current.jug2 > j2cap:
+            continue
+        elif current.jug1 == 0 and current.jug2 == 0:
+            continue
+
+        # Instead of queing the next states 1-4 to the end of the queue, 
+        # now add them to the front so that it evaluates depth first
+        # Goes in reverse order and add it to the front of the queue 
+        # so 1-4 will stack on top of what's already in the queue before
+
+        # Case 4: Empty Jug 2
+        if current.jug2 > 0:
+            queue.insert(0,(Jug(current.jug1,0,"Dump 2",current)))
+
+        # Case 3: Empty Jug 1
+        if current.jug1 > 0:
+            queue.insert(0,(Jug(0,current.jug2,"Dump 1",current)))
+
+        # Case 2: Pour Jug 2 to Jug 1
+        if current.jug1 < j1cap and current.jug2 != 0:
+
+            # Values for the new state of jugs
+            if current.jug1 + current.jug2 <= j1cap:
+                jug1 = current.jug1 + current.jug2
+                jug2 = 0
+            else:
+                jug1 = j1cap
+                jug2 = current.jug1 + current.jug2 - j1cap
+
+            queue.insert(0,(Jug(jug1,jug2,"Pour 2",current)))
+
+        # Case 1: Pour Jug 1 to Jug 2
+        if current.jug1 != 0 and current.jug2 < j2cap:
+
+            # Values for the new state of jugs
+            if current.jug1 + current.jug2 <= j2cap:
+                jug1 = 0
+                jug2 = current.jug1 + current.jug2
+            else:
+                jug1 = current.jug1 + current.jug2 - j2cap
+                jug2 = j2cap
+           
+            queue.insert(0,(Jug(jug1,jug2,"Pour 1",current)))
+
+    # Finding the path and the moves
+    traverse = goal
+    path.append(traverse.jugs)
+    moves.append(traverse.action)
+    while True:
+        if(traverse.parent.isStart):
+            traverse = traverse.parent
+            path.append(traverse.jugs)
+            break
+        traverse = traverse.parent
+        path.append(traverse.jugs)
+        moves.append(traverse.action)
+
+    path.reverse()
+    moves.reverse()
+
+    print("Solution Path:")
+    print(path)
+    print("Solution action:")
+    print(moves)
+
+    # Create Output.txt based on the algorithm
+    outputText("DFS", start.jugs, target, path, moves)
 
 def Astar(target):
     None
@@ -174,5 +274,12 @@ if __name__ == '__main__':
     # BFS((0,1))
     # BFS((4,0))
     # BFS((5,0))
-    BFS((3,2))
+    # BFS((3,2))
     # BFS((1,2))
+
+    # DFS
+    # DFS((0,1)) # INFITE LOOP 
+    # DFS((4,0)) # INFITE LOOP 
+     DFS((5,0)) # REACHES GOAL
+    # DFS((3,2)) # REACHES GOAL
+    # DFS((1,2)) # INFITE LOOP 
