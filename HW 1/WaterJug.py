@@ -19,7 +19,7 @@ class Jug:
     def __repr__(self):
         return f"{self.jugs}"
 
-# Initial states of the jugs
+# Global values for the initial state of the jugs
 jugX = 4
 jugY = 1
 j1cap = 5
@@ -72,6 +72,7 @@ def BFS(target):
         # Error checking
         if current.jug1 < 0 or current.jug2 < 0 or current.jug1 > j1cap or current.jug2 > j2cap:
             continue
+        # Skip if it's at (0,0), no action possible
         elif current.jug1 == 0 and current.jug2 == 0:
             continue
 
@@ -138,6 +139,7 @@ def BFS(target):
     # Create Output.txt based on the algorithm
     outputText("BFS", start.jugs, target, path, moves)
 
+# Function for DFS *No memory
 def DFS(target):
 
     # Target state
@@ -175,6 +177,7 @@ def DFS(target):
         # Error checking
         if current.jug1 < 0 or current.jug2 < 0 or current.jug1 > j1cap or current.jug2 > j2cap:
             continue
+        # Skip if it's at (0,0), no action possible
         elif current.jug1 == 0 and current.jug2 == 0:
             continue
 
